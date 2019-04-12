@@ -25,8 +25,9 @@ class  TodoDisplayList extends State<MyApp>{
         appBar: AppBar(title: Text("Flutter Demo"),),
         body: Column(
           children: <Widget>[
-            new TextField(
+            TextField(
               controller: eCtrl,
+              decoration: InputDecoration(hintText: "Input Todo"),
               textInputAction: TextInputAction.done,
               onSubmitted: (text) {
                 _todoItems.add(text);
