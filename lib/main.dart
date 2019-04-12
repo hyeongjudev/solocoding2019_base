@@ -27,7 +27,7 @@ class  TodoDisplayList extends State<MyApp>{
           children: <Widget>[
             TextField(
               controller: eCtrl,
-              decoration: InputDecoration(hintText: "Input Todo"),
+              decoration: InputDecoration(hintText: "Input Todo", contentPadding : const EdgeInsets.all(20.0),hintStyle: TextStyle(color: Color.fromARGB(255, 187, 189, 191), fontSize: 18),),
               textInputAction: TextInputAction.done,
               onSubmitted: (text) {
                 _todoItems.add(text);
