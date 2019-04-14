@@ -19,7 +19,10 @@ class _HomeListState extends State<Home> {
         ),
         body: Column(
           children: <Widget>[
-            Text("Todo List",
+          /*  Text("할 일 리스트",
+                style: TextStyle(color: Colors.black87, fontSize: 42.0),
+                textAlign: TextAlign.left),*/
+            Text("할 일 없음",
                 style: TextStyle(color: Colors.black87, fontSize: 42.0),
                 textAlign: TextAlign.left),
             Expanded(
