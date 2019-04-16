@@ -34,8 +34,7 @@ class _HomeListState extends State<Home> {
                               padding: EdgeInsets.all(10.0),
                               child: Text(todoItems[int],
                                   style: TextStyle(
-                                      fontSize: 23.0,
-                                      color: Colors.lightBlue)),
+                                      fontSize: 23.0, color: Colors.lightBlue)),
                             )))
           ],
         ));
