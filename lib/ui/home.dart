@@ -35,7 +35,7 @@ class _HomeListState extends State<Home> {
                               child: Text(todoItems[int],
                                   style: TextStyle(
                                       fontSize: 23.0,
-                                      color: Color.fromARGB(255, 255, 54, 0))),
+                                      color: Colors.lightBlue)),
                             )))
           ],
         ));
