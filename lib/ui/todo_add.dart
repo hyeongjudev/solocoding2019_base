@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:toast/toast.dart';
 
 class ToDoAddPage extends StatefulWidget {
-  final List<String> todoList;
+  final List<Todo> todoList;
 
   ToDoAddPage(this.todoList);
 
@@ -12,9 +13,9 @@ class ToDoAddPage extends StatefulWidget {
 
 class _ToDoAddState extends State<ToDoAddPage> {
   final TextEditingController eCtrl = TextEditingController();
-  List<String> todoItems;
+  List<Todo> todoItems;
 
-  _ToDoAddState(List<String> todoList) : todoItems = todoList;
+  _ToDoAddState(List<Todo> todoList) : todoItems = todoList;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +110,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
       Toast.show("할 일을 입력 하세요", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     } else {
-      todoItems.add(eCtrl.text);
+      todoItems.add(Todo(eCtrl.text, null, null));
       eCtrl.clear();
       Navigator.pop(context);
     }

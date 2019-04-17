@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
 
 class Home extends StatefulWidget {
@@ -7,7 +8,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeListState extends State<Home> {
-  List<String> todoItems = [];
+  List<Todo> todoItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _HomeListState extends State<Home> {
                         itemCount: todoItems.length,
                         itemBuilder: (context, int) => Padding(
                               padding: EdgeInsets.all(10.0),
-                              child: Text(todoItems[int],
+                              child: Text(todoItems[int].title,
                                   style: TextStyle(
                                       fontSize: 23.0, color: Colors.lightBlue)),
                             )))
