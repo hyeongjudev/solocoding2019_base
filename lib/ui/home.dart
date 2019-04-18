@@ -39,7 +39,7 @@ class _HomeListState extends State<Home> {
                           child: Container(
                             color: Colors.white,
                             child: ListTile(
-                              title: Text(todoItems[int].title),
+                              title: Text(todoItems[int].title, style: TextStyle(fontSize: 20.0,color: Colors.blue),),
                               subtitle: Text(todoItems[int].note),
                             ),
                           ),
