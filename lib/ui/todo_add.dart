@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:toast/toast.dart';
-
 class ToDoAddPage extends StatefulWidget {
   final List<Todo> todoList;
 

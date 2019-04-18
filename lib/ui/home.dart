@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
 
@@ -27,16 +28,47 @@ class _HomeListState extends State<Home> {
                         textAlign: TextAlign.left))
                 : Expanded(
                     child: ListView.separated(
-                        separatorBuilder: (context, int) => Divider(
-                              color: Colors.indigo,
+                      separatorBuilder: (context, int) => Divider(
+                            color: Colors.indigo,
+                          ),
+                      itemCount: todoItems.length,
+                      itemBuilder: (context, int) {
+                        return Slidable(
+                          delegate: SlidableDrawerDelegate(),
+                          actionExtentRatio: 0.25,
+                          child: Container(
+                            color: Colors.white,
+                            child: ListTile(
+                              title: Text(todoItems[int].title),
+                              subtitle: Text('subTitle'),
                             ),
-                        itemCount: todoItems.length,
-                        itemBuilder: (context, int) => Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(todoItems[int].title,
-                                  style: TextStyle(
-                                      fontSize: 23.0, color: Colors.lightBlue)),
-                            )))
+                          ),
+                          actions: <Widget>[
+                            IconSlideAction(
+                              caption: 'Archive',
+                              color: Colors.blue,
+                              icon: Icons.archive,
+                              onTap: () => _showSnackBar(context,'Archive'),
+                            ),
+                            IconSlideAction(
+                              caption: 'Share',
+                              color: Colors.indigo,
+                              icon: Icons.share,
+                              onTap: () => _showSnackBar(context, 'Share'),
+                            ),
+                          ],
+                          secondaryActions: <Widget>[
+                            IconSlideAction(
+                              caption: 'Delete',
+                              color: Colors.red,
+                              icon: Icons.delete,
+                              onTap: () => _showSnackBar(context, 'Delete'),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  )
           ],
         ));
   }
@@ -44,5 +76,9 @@ class _HomeListState extends State<Home> {
   _showTodoAdd() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ToDoAddPage(todoItems)));
+  }
+
+  _showSnackBar(BuildContext context, String action) {
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(action),duration: Duration(seconds: 2)));
   }
 }
