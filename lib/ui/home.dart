@@ -40,7 +40,7 @@ class _HomeListState extends State<Home> {
                             color: Colors.white,
                             child: ListTile(
                               title: Text(todoItems[int].title),
-                              subtitle: Text('subTitle'),
+                              subtitle: Text(todoItems[int].note),
                             ),
                           ),
                           actions: <Widget>[

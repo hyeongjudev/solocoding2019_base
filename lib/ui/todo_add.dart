@@ -46,7 +46,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
               Padding(
                   padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
                   child: TextField(
-                      controller: eCtrl,
+                      controller: eTitleCtrl,
                       style: TextStyle(fontSize: 18.0),
                       decoration: InputDecoration(
                         labelText: "Todo Title",
@@ -131,6 +131,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
     } else {
       todoItems.add(Todo(eTitleCtrl.text,eNoteCtrl.text, null, null));
       eTitleCtrl.clear();
+      eNoteCtrl.clear();
       Navigator.pop(context);
     }
   }
