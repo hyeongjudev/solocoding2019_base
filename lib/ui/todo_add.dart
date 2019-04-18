@@ -11,7 +11,8 @@ class ToDoAddPage extends StatefulWidget {
 }
 
 class _ToDoAddState extends State<ToDoAddPage> {
-  final TextEditingController eCtrl = TextEditingController();
+  final TextEditingController eTitleCtrl = TextEditingController();
+  final TextEditingController eNoteCtrl = TextEditingController();
   List<Todo> todoItems;
 
   _ToDoAddState(List<Todo> todoList) : todoItems = todoList;
@@ -51,6 +52,25 @@ class _ToDoAddState extends State<ToDoAddPage> {
                         labelText: "Todo Title",
                         labelStyle: TextStyle(fontSize: 18, color: Colors.blue),
                         hintText: "Input Todo",
+                        contentPadding: const EdgeInsets.all(20.0),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.green)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 187, 189, 191),
+                            fontSize: 18),
+                      ),
+                      textInputAction: TextInputAction.done)),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
+                  child: TextField(
+                      controller: eNoteCtrl,
+                      style: TextStyle(fontSize: 18.0),
+                      decoration: InputDecoration(
+                        labelText: "Note",
+                        labelStyle: TextStyle(fontSize: 18, color: Colors.blue),
+                        hintText: "Input Note",
                         contentPadding: const EdgeInsets.all(20.0),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.green)),
@@ -105,12 +125,12 @@ class _ToDoAddState extends State<ToDoAddPage> {
   }
 
   _todoAdd() {
-    if (eCtrl.text.trim() == "") {
+    if (eTitleCtrl.text.trim() == "") {
       Toast.show("할 일을 입력 하세요", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     } else {
-      todoItems.add(Todo(eCtrl.text, null, null));
-      eCtrl.clear();
+      todoItems.add(Todo(eTitleCtrl.text,eNoteCtrl.text, null, null));
+      eTitleCtrl.clear();
       Navigator.pop(context);
     }
   }
