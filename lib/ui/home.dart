@@ -79,6 +79,6 @@ class _HomeListState extends State<Home> {
   }
 
   _showSnackBar(BuildContext context, String action) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(action),duration: Duration(seconds: 2)));
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(action)));
   }
 }
