@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/block_picker.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:toast/toast.dart';
+
 class ToDoAddPage extends StatefulWidget {
   final List<Todo> todoList;
 
@@ -15,7 +16,8 @@ class _ToDoAddState extends State<ToDoAddPage> {
   final TextEditingController eTitleCtrl = TextEditingController();
   final TextEditingController eNoteCtrl = TextEditingController();
 
-  Color currentColor = const Color(0xff443a49);
+  Color currentColor = const Color(0xFFF44336);
+
   void changeColor(Color color) => setState(() => currentColor = color);
 
   List<Todo> todoItems;
@@ -90,6 +92,38 @@ class _ToDoAddState extends State<ToDoAddPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     RaisedButton(
+                      elevation: 3.0,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('색상 선택'),
+                              content: SingleChildScrollView(
+                                child: BlockPicker(
+                                  pickerColor: currentColor,
+                                  onColorChanged: changeColor,
+
+                                ),
+                              ),
+                              actions: <Widget>[
+                                FlatButton(
+                                    child: Text('OK',style: TextStyle(fontSize: 20.0)),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    })
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('색상 선택'),
+                      color: currentColor,
+                      textColor: useWhiteForeground(currentColor)
+                          ? const Color(0xffffffff)
+                          : const Color(0xff000000),
+                    ),
+                    RaisedButton(
                       onPressed: () {},
                       textColor: Colors.white,
                       padding: const EdgeInsets.all(5.0),
@@ -124,12 +158,8 @@ class _ToDoAddState extends State<ToDoAddPage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text('미리 알림'),
                       ),
-                    )
+                    ),
                   ]),
-              BlockPicker(
-                pickerColor: currentColor,
-                onColorChanged: changeColor,
-              ),
             ]));
   }
 
@@ -138,10 +168,14 @@ class _ToDoAddState extends State<ToDoAddPage> {
       Toast.show("할 일을 입력 하세요", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     } else {
-      todoItems.add(Todo(eTitleCtrl.text,eNoteCtrl.text, pickerColor, null));
+      todoItems.add(Todo(eTitleCtrl.text, eNoteCtrl.text, pickerColor, null));
       eTitleCtrl.clear();
       eNoteCtrl.clear();
       Navigator.pop(context);
     }
+  }
+
+  bool useWhiteForeground(Color color) {
+    return 1.05 / (color.computeLuminance() + 0.05) > 4.5;
   }
 }
