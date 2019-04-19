@@ -67,7 +67,12 @@ class _HomeListState extends State<Home> {
                               caption: 'Delete',
                               color: Colors.red,
                               icon: Icons.delete,
-                              onTap: () => _showSnackBar(context, 'Delete'),
+                              onTap: () {
+                                setState(() {
+                                  todoItems.removeAt(int);
+                                });
+                                _showSnackBar(context, 'Delete');
+                                },
                             ),
                           ],
                         );
