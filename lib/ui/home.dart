@@ -44,8 +44,8 @@ class _HomeListState extends State<Home> {
                                 child: Text((int+1).toString()),
                                 foregroundColor: Colors.white,
                               ),
-                              title: Text(todoItems[int].title),
-                              subtitle: Text(todoItems[int].note),
+                              title: Text(todoItems[int].title, style: TextStyle(fontSize: 25.0, color: todoItems[int].color),),
+                              subtitle: Text(todoItems[int].note, style: TextStyle(fontSize: 16.0)),
                             ),
                           ),
                           actions: <Widget>[
