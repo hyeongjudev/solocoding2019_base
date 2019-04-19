@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/block_picker.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:toast/toast.dart';
 class ToDoAddPage extends StatefulWidget {
@@ -13,6 +14,10 @@ class ToDoAddPage extends StatefulWidget {
 class _ToDoAddState extends State<ToDoAddPage> {
   final TextEditingController eTitleCtrl = TextEditingController();
   final TextEditingController eNoteCtrl = TextEditingController();
+
+  Color currentColor = const Color(0xff443a49);
+  void changeColor(Color color) => setState(() => currentColor = color);
+
   List<Todo> todoItems;
 
   _ToDoAddState(List<Todo> todoList) : todoItems = todoList;
@@ -38,7 +43,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
                         color: Colors.blue,
                       ),
                       onPressed: () {
-                        _todoAdd();
+                        _todoAdd(currentColor);
                       },
                       padding: const EdgeInsets.all(5.0),
                     ),
@@ -119,17 +124,21 @@ class _ToDoAddState extends State<ToDoAddPage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text('미리 알림'),
                       ),
-                    ),
-                  ])
+                    )
+                  ]),
+              BlockPicker(
+                pickerColor: currentColor,
+                onColorChanged: changeColor,
+              ),
             ]));
   }
 
-  _todoAdd() {
+  _todoAdd(Color pickerColor) {
     if (eTitleCtrl.text.trim() == "") {
       Toast.show("할 일을 입력 하세요", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     } else {
-      todoItems.add(Todo(eTitleCtrl.text,eNoteCtrl.text, null, null));
+      todoItems.add(Todo(eTitleCtrl.text,eNoteCtrl.text, pickerColor, null));
       eTitleCtrl.clear();
       eNoteCtrl.clear();
       Navigator.pop(context);

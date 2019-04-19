@@ -1,8 +1,10 @@
+import 'package:flutter/painting.dart';
+
 class Todo {
   String title;
   String note;
-  DateTime startTime;
   DateTime endTime;
+  Color color;
 
-  Todo(this.title,this.note,this.startTime, this.endTime);
+  Todo(this.title,this.note, this.color, this.endTime);
 }
