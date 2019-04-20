@@ -1,10 +1,11 @@
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:share/share.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
-
-import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:solocoding2019_base/ui/todo_archive.dart';
+import 'package:date_format/date_format.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,13 +20,11 @@ class _HomeListState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: AnimatedFloatingActionButton(
-            fabButtons: <Widget>[
-              floatAdd(), floatArchive()
-            ],
+            fabButtons: <Widget>[floatAdd(), floatArchive()],
             colorStartAnimation: Colors.green,
             colorEndAnimation: Colors.red,
             animatedIconData: AnimatedIcons.menu_close //To principal button
-        ),
+            ),
         appBar: AppBar(
           title: Text("Todo App"),
         ),
@@ -51,31 +50,38 @@ class _HomeListState extends State<Home> {
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor: todoItems[int].color,
-                                child: Text((int+1).toString()),
+                                child: Text((int + 1).toString()),
                                 foregroundColor: Colors.white,
                               ),
-                              title: Text(todoItems[int].title, style: TextStyle(fontSize: 25.0, color: todoItems[int].color),),
-                              subtitle: Text(todoItems[int].note, style: TextStyle(fontSize: 16.0)),
+                              title: Text(
+                                todoItems[int].title,
+                                style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: todoItems[int].color),
+                              ),
+                              subtitle: Text(todoItems[int].note,
+                                  style: TextStyle(fontSize: 16.0)),
                             ),
                           ),
                           actions: <Widget>[
                             IconSlideAction(
-                              caption: 'Archive',
-                              color: Colors.blue,
-                              icon: Icons.archive,
-                              onTap: () {
-                                setState(() {
-                                  archiveItems.add(todoItems[int]);
-                                  todoItems.removeAt(int);
-                                });
-                                _showSnackBar(context, 'Archive');
-                              }
-                            ),
+                                caption: 'Archive',
+                                color: Colors.blue,
+                                icon: Icons.archive,
+                                onTap: () {
+                                  setState(() {
+                                    todoItems[int].archiveTime = _getCurrentTime();
+                                    archiveItems.add(todoItems[int]);
+                                    todoItems.removeAt(int);
+                                  });
+                                  _showSnackBar(context, 'Archive');
+                                }),
                             IconSlideAction(
                               caption: 'Share',
                               color: Colors.indigo,
                               icon: Icons.share,
-                              onTap: () => _showSnackBar(context, 'Share'),
+                              onTap: () {
+                                Share.share("HyeongJu's Todo App Share Text : ${todoItems[int].title}");}
                             ),
                           ],
                           secondaryActions: <Widget>[
@@ -88,7 +94,7 @@ class _HomeListState extends State<Home> {
                                   todoItems.removeAt(int);
                                 });
                                 _showSnackBar(context, 'Delete');
-                                },
+                              },
                             ),
                           ],
                         );
@@ -99,17 +105,17 @@ class _HomeListState extends State<Home> {
         ));
   }
 
-
   Widget floatAdd() {
     return Container(
       child: FloatingActionButton(
         heroTag: "btn1",
-        onPressed: () =>_showTodoAdd(),
+        onPressed: () => _showTodoAdd(),
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
     );
   }
+
   Widget floatArchive() {
     return Container(
       child: FloatingActionButton(
@@ -120,6 +126,7 @@ class _HomeListState extends State<Home> {
       ),
     );
   }
+
   _showTodoAdd() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ToDoAddPage(todoItems)));
@@ -128,6 +135,11 @@ class _HomeListState extends State<Home> {
   _showTodoArchive() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ToDoArchive(archiveItems)));
+  }
+
+  String _getCurrentTime() {
+
+    return formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd]);
   }
 
   _showSnackBar(BuildContext context, String action) {

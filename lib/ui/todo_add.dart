@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/block_picker.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:toast/toast.dart';
+import 'package:share/share.dart';
 
 class ToDoAddPage extends StatefulWidget {
   final List<Todo> todoList;
@@ -56,8 +57,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
                                 hintText: "Input Todo",
                                 contentPadding: const EdgeInsets.all(20.0),
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: Colors.blue)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.green)),
@@ -79,8 +79,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
                                 hintText: "Input Note",
                                 contentPadding: const EdgeInsets.all(20.0),
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: Colors.blue)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.green)),
@@ -126,7 +125,13 @@ class _ToDoAddState extends State<ToDoAddPage> {
                                   : const Color(0xff000000),
                             ),
                             RaisedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                final RenderBox box = context.findRenderObject();
+                                Share.share('Hello this is a test',
+                                    sharePositionOrigin:
+                                    box.localToGlobal(Offset.zero) &
+                                    box.size);
+                              },
                               textColor: Colors.white,
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
