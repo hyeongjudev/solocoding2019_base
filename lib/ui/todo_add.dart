@@ -78,7 +78,7 @@ class _ToDoAddState extends State<ToDoAddPage> {
                             color: Color.fromARGB(255, 187, 189, 191),
                             fontSize: 18),
                       ),
-                      textInputAction: TextInputAction.done)),
+                      textInputAction: TextInputAction.next)),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
