@@ -4,6 +4,7 @@ import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
 
 import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
+import 'package:solocoding2019_base/ui/todo_archive.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeListState extends State<Home> {
   List<Todo> todoItems = [];
+  List<Todo> archiveItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,13 @@ class _HomeListState extends State<Home> {
                               caption: 'Archive',
                               color: Colors.blue,
                               icon: Icons.archive,
-                              onTap: () => _showSnackBar(context,'Archive'),
+                              onTap: () {
+                                setState(() {
+                                  archiveItems.add(todoItems[int]);
+                                  todoItems.removeAt(int);
+                                });
+                                _showSnackBar(context, 'Archive');
+                              }
                             ),
                             IconSlideAction(
                               caption: 'Share',
@@ -106,7 +114,7 @@ class _HomeListState extends State<Home> {
     return Container(
       child: FloatingActionButton(
         heroTag: "btn2",
-        onPressed: null,
+        onPressed: () => _showTodoArchive(),
         tooltip: 'Archive',
         child: Icon(Icons.archive),
       ),
@@ -115,6 +123,11 @@ class _HomeListState extends State<Home> {
   _showTodoAdd() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ToDoAddPage(todoItems)));
+  }
+
+  _showTodoArchive() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ToDoArchive(archiveItems)));
   }
 
   _showSnackBar(BuildContext context, String action) {

@@ -28,130 +28,141 @@ class _ToDoAddState extends State<ToDoAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-           onPressed: () => _todoAdd(currentColor),
-          child: Icon(Icons.add),
+          onPressed: () => _todoAdd(currentColor),
+          child: Icon(Icons.check),
         ),
         appBar: AppBar(
           title: Text("Add ToDo"),
         ),
-        body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-                    Text("할 일 추가",
-                        style: TextStyle(color: Colors.black87, fontSize: 42.0),
-                        textAlign: TextAlign.left),
-
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
-                  child: TextField(
-                      controller: eTitleCtrl,
-                      style: TextStyle(fontSize: 18.0),
-                      decoration: InputDecoration(
-                        labelText: "Todo Title",
-                        labelStyle: TextStyle(fontSize: 18, color: Colors.blue),
-                        hintText: "Input Todo",
-                        contentPadding: const EdgeInsets.all(20.0),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 187, 189, 191),
-                            fontSize: 18),
-                      ),
-                      textInputAction: TextInputAction.done)),
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
-                  child: TextField(
-                      controller: eNoteCtrl,
-                      style: TextStyle(fontSize: 18.0),
-                      decoration: InputDecoration(
-                        labelText: "Note",
-                        labelStyle: TextStyle(fontSize: 18, color: Colors.blue),
-                        hintText: "Input Note",
-                        contentPadding: const EdgeInsets.all(20.0),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 187, 189, 191),
-                            fontSize: 18),
-                      ),
-                      textInputAction: TextInputAction.next)),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    RaisedButton(
-                      elevation: 3.0,
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('색상 선택'),
-                              content: SingleChildScrollView(
-                                child: BlockPicker(
-                                  pickerColor: currentColor,
-                                  onColorChanged: changeColor,
-
-                                ),
+        body: Container(
+            child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 30.0,
+                ),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
+                          child: TextField(
+                              controller: eTitleCtrl,
+                              style: TextStyle(fontSize: 18.0),
+                              decoration: InputDecoration(
+                                labelText: "Todo Title",
+                                labelStyle:
+                                    TextStyle(fontSize: 18, color: Colors.blue),
+                                hintText: "Input Todo",
+                                contentPadding: const EdgeInsets.all(20.0),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.blue)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.green)),
+                                hintStyle: TextStyle(
+                                    color: Color.fromARGB(255, 187, 189, 191),
+                                    fontSize: 18),
                               ),
-                              actions: <Widget>[
-                                FlatButton(
-                                    child: Text('OK',style: TextStyle(fontSize: 20.0)),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    })
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      child: const Text('색상 선택'),
-                      color: currentColor,
-                      textColor: useWhiteForeground(currentColor)
-                          ? const Color(0xffffffff)
-                          : const Color(0xff000000),
-                    ),
-                    RaisedButton(
-                      onPressed: () {},
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue
-                            ],
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('기한 설정'),
-                      ),
-                    ),
-                    RaisedButton(
-                      onPressed: () {},
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue
-                            ],
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text('미리 알림'),
-                      ),
-                    ),
-                  ]),
-            ]));
+                              textInputAction: TextInputAction.done)),
+                      Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
+                          child: TextField(
+                              controller: eNoteCtrl,
+                              style: TextStyle(fontSize: 18.0),
+                              decoration: InputDecoration(
+                                labelText: "Note",
+                                labelStyle:
+                                    TextStyle(fontSize: 18, color: Colors.blue),
+                                hintText: "Input Note",
+                                contentPadding: const EdgeInsets.all(20.0),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.blue)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.green)),
+                                hintStyle: TextStyle(
+                                    color: Color.fromARGB(255, 187, 189, 191),
+                                    fontSize: 18),
+                              ),
+                              textInputAction: TextInputAction.next)),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            RaisedButton(
+                              elevation: 3.0,
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('색상 선택'),
+                                      content: SingleChildScrollView(
+                                        child: BlockPicker(
+                                          pickerColor: currentColor,
+                                          onColorChanged: changeColor,
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                            child: Text('OK',
+                                                style:
+                                                    TextStyle(fontSize: 20.0)),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            })
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text('색상 선택'),
+                              color: currentColor,
+                              textColor: useWhiteForeground(currentColor)
+                                  ? const Color(0xffffffff)
+                                  : const Color(0xff000000),
+                            ),
+                            RaisedButton(
+                              onPressed: () {},
+                              textColor: Colors.white,
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: <Color>[
+                                      Colors.red,
+                                      Colors.green,
+                                      Colors.blue
+                                    ],
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text('기한 설정'),
+                              ),
+                            ),
+                            RaisedButton(
+                              onPressed: () {},
+                              textColor: Colors.white,
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: <Color>[
+                                      Colors.red,
+                                      Colors.green,
+                                      Colors.blue
+                                    ],
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text('미리 알림'),
+                              ),
+                            ),
+                          ]),
+                    ]))));
   }
 
   _todoAdd(Color pickerColor) {
