@@ -27,29 +27,20 @@ class _ToDoAddState extends State<ToDoAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+           onPressed: () => _todoAdd(currentColor),
+          child: Icon(Icons.add),
+        ),
         appBar: AppBar(
           title: Text("Add ToDo"),
         ),
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
                     Text("할 일 추가",
                         style: TextStyle(color: Colors.black87, fontSize: 42.0),
                         textAlign: TextAlign.left),
-                    IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.blue,
-                      ),
-                      onPressed: () {
-                        _todoAdd(currentColor);
-                      },
-                      padding: const EdgeInsets.all(5.0),
-                    ),
-                  ]),
+
               Padding(
                   padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 20.0),
                   child: TextField(

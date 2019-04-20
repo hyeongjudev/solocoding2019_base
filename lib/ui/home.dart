@@ -20,7 +20,7 @@ class _HomeListState extends State<Home> {
             fabButtons: <Widget>[
               floatAdd(), floatArchive()
             ],
-            colorStartAnimation: Colors.blue,
+            colorStartAnimation: Colors.green,
             colorEndAnimation: Colors.red,
             animatedIconData: AnimatedIcons.menu_close //To principal button
         ),
