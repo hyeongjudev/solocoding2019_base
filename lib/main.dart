@@ -19,7 +19,7 @@ class  TodoDisplayList extends State<MyApp>{
         theme: ThemeData(
         primarySwatch: Colors.green,
     ),
-     home: Home(),
+     home: Home()
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
 
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
+
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _HomeListState();
@@ -14,8 +16,14 @@ class _HomeListState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add), onPressed: _showTodoAdd),
+        floatingActionButton: AnimatedFloatingActionButton(
+            fabButtons: <Widget>[
+              floatAdd(), floatArchive()
+            ],
+            colorStartAnimation: Colors.blue,
+            colorEndAnimation: Colors.red,
+            animatedIconData: AnimatedIcons.menu_close //To principal button
+        ),
         appBar: AppBar(
           title: Text("Todo App"),
         ),
@@ -83,6 +91,27 @@ class _HomeListState extends State<Home> {
         ));
   }
 
+
+  Widget floatAdd() {
+    return Container(
+      child: FloatingActionButton(
+        heroTag: "btn1",
+        onPressed: () =>_showTodoAdd(),
+        tooltip: 'Add',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+  Widget floatArchive() {
+    return Container(
+      child: FloatingActionButton(
+        heroTag: "btn2",
+        onPressed: null,
+        tooltip: 'Archive',
+        child: Icon(Icons.archive),
+      ),
+    );
+  }
   _showTodoAdd() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ToDoAddPage(todoItems)));
