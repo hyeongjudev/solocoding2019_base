@@ -25,7 +25,7 @@ class _ToDoArchiveState extends State<ToDoArchive> {
           children: <Widget>[
             todoItems.isEmpty
                 ? ListTile(
-                    title: Text("할 일 없음",
+                    title: Text("완료 된 할 일 없음",
                         style: TextStyle(color: Colors.black87, fontSize: 42.0),
                         textAlign: TextAlign.left))
                 : Expanded(
@@ -51,7 +51,8 @@ class _ToDoArchiveState extends State<ToDoArchive> {
                                         decoration: TextDecoration.lineThrough,
                                         color: Colors.blue),
                                   ),
-                                  subtitle: Text("Completion time : ${todoItems[int].archiveTime}",
+                                  subtitle: Text(
+                                      "Completion time : ${todoItems[int].archiveTime}",
                                       style: TextStyle(fontSize: 16.0)),
                                 ),
                               ),

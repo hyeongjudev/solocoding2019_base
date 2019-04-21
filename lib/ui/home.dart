@@ -2,6 +2,7 @@ import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:share/share.dart';
+import 'package:solocoding2019_base/helper/database_helper.dart';
 import 'package:solocoding2019_base/model/todo_model.dart';
 import 'package:solocoding2019_base/ui/todo_add.dart';
 import 'package:solocoding2019_base/ui/todo_archive.dart';
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeListState extends State<Home> {
   List<Todo> todoItems = [];
   List<Todo> archiveItems = [];
+  var db = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +142,17 @@ class _HomeListState extends State<Home> {
   String _getCurrentTime() {
 
     return formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd]);
+  }
+
+  _getToDoItems() {
+    FutureBuilder<List<Todo>>(
+      future: db.getToDoList(),
+      builder: (BuildContext context, AsyncSnapshot<List<Todo>> snapshot) {
+        if(snapshot.hasData) {
+          todoItems = snapshot.data;
+        }
+      },
+    );
   }
 
   _showSnackBar(BuildContext context, String action) {

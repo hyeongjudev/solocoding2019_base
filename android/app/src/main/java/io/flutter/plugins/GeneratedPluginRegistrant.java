@@ -1,7 +1,9 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
+import com.builttoroam.devicecalendar.DeviceCalendarPlugin;
 import io.flutter.plugins.pathprovider.PathProviderPlugin;
+import dk.kjeldsen.scheduled_notifications.ScheduledNotificationsPlugin;
 import io.flutter.plugins.share.SharePlugin;
 import com.tekartik.sqflite.SqflitePlugin;
 
@@ -13,7 +15,9 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
+    DeviceCalendarPlugin.registerWith(registry.registrarFor("com.builttoroam.devicecalendar.DeviceCalendarPlugin"));
     PathProviderPlugin.registerWith(registry.registrarFor("io.flutter.plugins.pathprovider.PathProviderPlugin"));
+    ScheduledNotificationsPlugin.registerWith(registry.registrarFor("dk.kjeldsen.scheduled_notifications.ScheduledNotificationsPlugin"));
     SharePlugin.registerWith(registry.registrarFor("io.flutter.plugins.share.SharePlugin"));
     SqflitePlugin.registerWith(registry.registrarFor("com.tekartik.sqflite.SqflitePlugin"));
   }
