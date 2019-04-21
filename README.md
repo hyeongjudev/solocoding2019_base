@@ -1,7 +1,8 @@
-50/2/5
+50/4/5
 
 # solocoding2019_base
 ~~완료한 일에 완료한 날짜가 표시 된다.~~
+~~AnimatedFloatingActionButton 사용(Hero Animation)~~
 
 ## 할 일 관리
 ~~1. 간단하게 할일을 추가할 수 있어야 한다.~~
