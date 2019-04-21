@@ -23,17 +23,10 @@
 7. 알림 날짜/시간을 지정한 경우, 사용자가 원한다면, 캘린더 프로바이더(구글캘린더, MS캘린더 등)에 연결하여 저장될 수 있도록 한다.
 
 <img src="https://user-images.githubusercontent.com/37387742/56472581-1d8d0380-649b-11e9-84f1-af933a2c9d59.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472586-34335a80-649b-11e9-820c-99cbfb402aec.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472589-401f1c80-649b-11e9-93dd-a86b1b61f9f6.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472581-1d8d0380-649b-11e9-84f1-af933a2c9d59.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472599-51682900-649b-11e9-91ce-a98d0e3ebcd6.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472602-5dec8180-649b-11e9-93a9-74f637e42af9.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472607-6a70da00-649b-11e9-87a3-3d47df69c85c.jpeg"  width="120" height="200">
-
 <img src="https://user-images.githubusercontent.com/37387742/56472610-778dc900-649b-11e9-86d0-3bdf0f0a0bd7.jpeg"  width="120" height="200">
