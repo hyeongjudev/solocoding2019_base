@@ -219,10 +219,8 @@ class _ToDoAddState extends State<ToDoAddPage> {
                               child: _selectedCalendars == null
                                   ? Text("달력 선택")
                                   : Text("${_selectedCalendars.name}"),
-                              color: currentColor,
-                              textColor: useWhiteForeground(currentColor)
-                                  ? const Color(0xffffffff)
-                                  : const Color(0xff000000),
+                              color: Colors.green,
+                              textColor: Colors.white,
                             ),
                           ]),
                     ]))));
